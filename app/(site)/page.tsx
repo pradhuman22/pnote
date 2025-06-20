@@ -1,11 +1,20 @@
-import CategorySection from './_components/category';
+import { getNotesMetadata } from '@/lib/notes';
+import CategoryListSection from './_components/category-list';
 import HeroSection from './_components/hero';
+import RecentNoteSection from './_components/recent-note';
 
-export default function Home() {
+export default async function Home() {
+  const notes = await getNotesMetadata();
   return (
     <div className="container mx-auto max-w-screen-xl px-4">
-      <HeroSection />
-      <CategorySection />
+      <HeroSection data={notes[0]} />
+      <CategoryListSection />
+      <div className="flex flex-col gap-5 py-5 lg:flex-row lg:py-10">
+        <div className="flex-1 flex-grow">
+          <RecentNoteSection data={notes} />
+        </div>
+        <div className="w-full lg:max-w-md">popular post</div>
+      </div>
     </div>
   );
 }

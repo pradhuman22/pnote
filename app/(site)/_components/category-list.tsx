@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 
-const CategorySection = () => {
+const CategoryListSection = () => {
   return (
     <section className="relative flex flex-col gap-5 py-10">
       <h1 className="mb-5 w-full text-center text-3xl font-semibold lg:mb-10 lg:text-5xl">
@@ -24,4 +24,4 @@ const CategorySection = () => {
   );
 };
 
-export default CategorySection;
+export default CategoryListSection;

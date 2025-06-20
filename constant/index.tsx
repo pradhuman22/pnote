@@ -24,10 +24,7 @@ export const trendingNote = {
   category: 'Next.js',
   tags: ['nextjs', 'react', 'web development', 'mdx', 'app router'],
   readingTime: '7 min',
-  thumbnail:
-    'https://res.cloudinary.com/dq3hy0q5z/image/upload/c_thumb,w_200,g_face/v1750347794/notes/udsaajymmvkgvtgbeepa.jpg',
-  banner:
-    'https://res.cloudinary.com/dq3hy0q5z/image/upload/c_fill,g_auto,h_250,w_970/b_rgb:000000,e_gradient_fade,y_-0.50/c_scale,co_rgb:ffffff,fl_relative,l_text:montserrat_25_style_light_align_center:Shop%20Now,w_0.5,y_0.18/v1750347794/notes/udsaajymmvkgvtgbeepa.jpg',
+  thumbnail: '/notes/udsaajymmvkgvtgbeepa.jpg',
 };
 
 export const notes = [

@@ -1,0 +1,68 @@
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+const rootDirectory = path.join(process.cwd(), 'content', 'notes');
+
+export const getNotesMetadata = async (limit?: number): Promise<NoteMetadata[]> => {
+  const files = fs.readdirSync(rootDirectory);
+  const markdownFiles = files.filter(file => file.endsWith('.mdx'));
+  const notes = await Promise.all(
+    markdownFiles.map(async file => {
+      /** create slug */
+      const slug = file.replace('.mdx', '');
+      /** get formatter */
+      const markdownWithMetadata = fs.readFileSync(path.join(rootDirectory, file), 'utf-8');
+      const { data } = matter(markdownWithMetadata);
+      data.slug = slug;
+      return data as NoteMetadata;
+    }),
+  );
+  const sortNotes = notes.sort(
+    (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+  );
+  if (limit) {
+    return sortNotes.slice(0, limit);
+  }
+  return sortNotes;
+};
+
+export const getNoteBySlug = async (slug: string): Promise<Note | null> => {
+  try {
+    const filePath = path.join(rootDirectory, `${slug}.mdx`);
+    const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
+    const { data, content } = matter(fileContent);
+    return { metadata: { ...data, slug }, content } as Note;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+export const getAllNotes = async () => {
+  const files = fs.readdirSync(rootDirectory);
+  const notes = await Promise.all(files.map(file => getNoteBySlug(file.replace('.mdx', ''))));
+  // Filter out nulls if any file failed to load
+  const filteredNotes = notes.filter(note => note !== null) as Note[];
+  return filteredNotes.sort(
+    (a, b) =>
+      new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime(),
+  );
+};
+
+export const getRelatedNotes = async ({
+  category,
+  limit,
+}: {
+  category: string;
+  limit: number;
+}): Promise<NoteMetadata[]> => {
+  try {
+    const notes = await getNotesMetadata(limit);
+    const relatedNotes = notes.filter(note => note.category === category);
+    return relatedNotes;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
