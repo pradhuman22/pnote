@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 
 const HeroSection = () => {
   return (
-    <section className="fle relative flex-col gap-5">
+    <section className="relative mb-10 flex flex-col gap-5">
       <div className="flex w-full flex-col items-center gap-1.5 py-10 font-semibold lg:gap-4 lg:py-20">
         <h1 className="flex items-center text-2xl lg:text-8xl">
           <span>WELCOME TO PN</span>
@@ -64,7 +64,7 @@ const HeroSection = () => {
             ))}
           </div>
           <div className="flex">
-            <Button asChild className="ml-auto lg:ml-0">
+            <Button asChild className="ml-auto w-full lg:ml-0 lg:w-fit">
               <Link href={`/notes/${trendingNote.title}`}>Read more..</Link>
             </Button>
           </div>
