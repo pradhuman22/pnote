@@ -12,7 +12,7 @@ const RelatedNotes = async ({ category, limit }: { category: string; limit: numb
   });
   return (
     <section className="container mx-auto px-4 pt-4 pb-8">
-      <h1 className="mb-4 text-xl font-semibold">Related Notes</h1>
+      <h1 className="mb-5 w-full text-center text-3xl font-semibold lg:text-left">Related Notes</h1>
       <div className="grid lg:grid-cols-4 lg:gap-5">
         {notes.map((note, key) => (
           <Link href={`/notes/${note.slug}`} key={key}>

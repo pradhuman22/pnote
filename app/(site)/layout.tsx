@@ -6,7 +6,7 @@ const SiteLayout = ({ children }: PropsWithChildren) => {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main>{children}</main>
+      <main className="flex-1 grow">{children}</main>
       <Footer />
     </div>
   );
