@@ -48,7 +48,7 @@ const NoteList = ({ notes }: { notes: NoteMetadata[] }) => {
   }, [searchParams, notes]);
   return (
     <>
-      <div className="bg-accent flex flex-col items-center justify-center gap-3 py-24">
+      <div className="bg-accent flex flex-col items-center justify-center gap-3 py-14">
         <h1 className="text-center text-3xl font-semibold capitalize lg:text-6xl">
           {searchParams.get('category')?.split(' & ')[0] === 'Backend'
             ? 'Backend'

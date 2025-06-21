@@ -32,9 +32,9 @@ const MobileMenu = () => {
                 'text-foreground font-semibold': pathname == item.url,
               })}
             >
-              <SheetClose>
-                <Link href={item.url}>{item.label}</Link>
-              </SheetClose>
+              <Link href={item.url}>
+                <SheetClose>{item.label}</SheetClose>
+              </Link>
             </Button>
           ))}
         </div>
