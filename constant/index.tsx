@@ -62,7 +62,7 @@ export const notes = [
 
 export const categories = [
   {
-    label: 'Basic Web Development',
+    label: 'Web Development',
     description: 'Foundational skills in HTML, CSS, and JavaScript for building modern websites.',
     icon: BracesIcon,
     tailwindStyle:

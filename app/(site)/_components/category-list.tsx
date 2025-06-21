@@ -13,7 +13,7 @@ const CategoryListSection = () => {
       <div className="grid gap-3.5 lg:grid-cols-4">
         {categories.map((item, key) => (
           <Button asChild key={key} className={cn('h-14', item.tailwindStyle)}>
-            <Link href={`/notes?category=${item.label.toLowerCase()}`}>
+            <Link href={`/notes?category=${encodeURIComponent(item.label.toLowerCase())}`}>
               <item.icon className="size-4" />
               {item.label}
             </Link>
