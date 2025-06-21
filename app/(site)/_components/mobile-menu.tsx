@@ -18,7 +18,7 @@ const MobileMenu = () => {
           <span className="sr-only">Open Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="right">
+      <SheetContent side="left" className="w-full">
         <SheetTitle>
           <span className="sr-only">PNOTE</span>
         </SheetTitle>
@@ -28,7 +28,7 @@ const MobileMenu = () => {
               asChild
               key={key}
               variant={'ghost'}
-              className={cn('text-foreground/70 cursor-pointer justify-start text-base', {
+              className={cn('text-foreground/70 cursor-pointer text-xl', {
                 'text-foreground font-semibold': pathname == item.url,
               })}
             >
