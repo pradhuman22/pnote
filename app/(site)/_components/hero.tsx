@@ -1,12 +1,11 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatDate } from '@/lib/utils';
-import { trendingNote } from '@/constant';
 import { Button } from '@/components/ui/button';
 import { BoxIcon, CalendarIcon, ClockIcon, EyeIcon, FolderIcon } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import { CldImage } from 'next-cloudinary';
 
 const HeroSection = ({ data }: { data: NoteMetadata }) => {
   return (
@@ -22,14 +21,14 @@ const HeroSection = ({ data }: { data: NoteMetadata }) => {
         </p>
       </div>
       <div className="flex w-full flex-col gap-4 lg:flex-row lg:items-center">
-        <div className="relative aspect-video h-60 lg:h-80">
-          <CldImage
+        <div className="relative aspect-[16/9] h-60 lg:h-80">
+          <Image
             src={data.thumbnail}
             alt={data.title}
-            fill
             priority
+            fill
             quality={90}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(min-width: 1040px) 569px, (min-width: 440px) calc(100vw - 32px), calc(23.33vw + 290px)"
             className="object-cover"
           />
         </div>
@@ -46,7 +45,13 @@ const HeroSection = ({ data }: { data: NoteMetadata }) => {
             </li>
             <li className="flex items-center gap-1.5">
               <EyeIcon className="size-3.5" />
-              <span>No Views</span>
+              <span>
+                {data.views == 0
+                  ? data.views > 1
+                    ? `${data.views} views`
+                    : `${data.views} view`
+                  : 'no views'}
+              </span>
             </li>
             <li className="flex items-center gap-1.5">
               <FolderIcon className="size-3.5" />
@@ -56,14 +61,14 @@ const HeroSection = ({ data }: { data: NoteMetadata }) => {
           <p className="mb-3 line-clamp-2 text-sm lg:line-clamp-3 lg:text-base">{data.excerpt}</p>
           <div className="mb-8 flex flex-wrap gap-2">
             {data.tags.map((item, key) => (
-              <Badge key={key} variant={'outline'} className="capitalize lg:text-sm">
+              <Badge key={key} variant={'outline'} className="capitalize lg:text-xs">
                 {item}
               </Badge>
             ))}
           </div>
           <div className="flex">
             <Button asChild className="ml-auto w-full lg:ml-0 lg:h-12 lg:w-fit lg:px-8">
-              <Link href={`/notes/${trendingNote.title}`}>Read more..</Link>
+              <Link href={`/notes/${data.slug}`}>Read more..</Link>
             </Button>
           </div>
         </div>

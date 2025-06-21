@@ -2,11 +2,15 @@ import {
   BracesIcon,
   CloudIcon,
   GaugeIcon,
+  GithubIcon,
+  InstagramIcon,
   LightbulbIcon,
   MonitorIcon,
   ServerIcon,
   ShieldIcon,
+  TwitterIcon,
   WrenchIcon,
+  YoutubeIcon,
 } from 'lucide-react';
 
 export const navigationMenuItems = [
@@ -112,5 +116,66 @@ export const categories = [
     icon: LightbulbIcon,
     tailwindStyle:
       'bg-orange-100 text-orange-800 hover:bg-orange-200 hover:text-orange-900 dark:bg-orange-800 dark:text-orange-100 dark:hover:bg-orange-700 dark:hover:text-orange-50',
+  },
+];
+
+export const tags = [
+  'HTML',
+  'CSS',
+  'Responsive Design',
+  'Tailwind CSS',
+  'Bootstrap',
+  'JavaScript',
+  'TypeScript',
+  'React',
+  'Next.js',
+  'Vue',
+  'Svelte',
+  'Node.js',
+  'Express',
+  'Prisma',
+  'PostgreSQL',
+  'MongoDB',
+  'REST APIs',
+  'GraphQL',
+  'Docker',
+  'CI/CD',
+  'GitHub Actions',
+  'Vercel',
+  'Netlify',
+  'AWS',
+];
+
+export const quickLinks = [
+  { label: 'Notes', url: '/notes' },
+  { label: 'Courses', url: '/courses' },
+  { label: 'Merch', url: '/merch' },
+  { label: 'Privacy', url: '/privacy' },
+];
+
+export const socialLinks = [
+  {
+    icon: TwitterIcon,
+    className: '',
+    title: 'twitter',
+    url: 'https://x.com/home',
+  },
+  {
+    icon: InstagramIcon,
+    title: 'instagram',
+    className: '',
+    url: 'https://www.instagram.com/shrestha.pradhuman/',
+  },
+  {
+    icon: YoutubeIcon,
+    title: 'youtube',
+    className: '',
+    url: 'https://www.youtube.com',
+  },
+  {
+    icon: GithubIcon,
+    title: 'github',
+    className: '',
+    url: 'https://github.com/shresthapradhuman',
   },
 ];

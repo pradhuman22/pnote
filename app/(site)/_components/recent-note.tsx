@@ -4,28 +4,26 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { formatDate } from '@/lib/utils';
 import { CalendarIcon, ClockIcon, EyeIcon, FolderIcon } from 'lucide-react';
-import { CldImage } from 'next-cloudinary';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 const RecentNoteSection = ({ data }: { data: NoteMetadata[] }) => {
   return (
     <section className="relative w-full py-10">
-      <h1 className="mb-5 w-full text-center text-3xl font-semibold lg:mb-10 lg:text-left">
-        Recent Notes
-      </h1>
+      <h1 className="mb-5 w-full text-center text-3xl font-semibold lg:text-left">Recent Notes</h1>
       <div className="flex flex-col gap-y-4">
         {data.map((note, key) => (
-          <Card key={key} className="items-center px-4 lg:flex-row">
-            <div className="relative aspect-video h-[180px] w-[320px]">
-              <CldImage
+          <Card key={key} className="items-center px-4 md:flex-row">
+            <div className="relative aspect-[3/2] h-[200px] md:h-[180px]">
+              <Image
                 src={note.thumbnail}
                 alt={note.title}
                 priority
                 fill
                 quality={90}
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover hover:scale-105"
+                sizes="270px"
+                className="object-cover"
               />
             </div>
             <div className="flex flex-col gap-2.5">
@@ -42,7 +40,13 @@ const RecentNoteSection = ({ data }: { data: NoteMetadata[] }) => {
                   </li>
                   <li className="flex items-center gap-1.5">
                     <EyeIcon className="size-3.5" />
-                    <span>No Views</span>
+                    <span>
+                      {note.views == 0
+                        ? note.views > 1
+                          ? `${note.views} views`
+                          : `${note.views} view`
+                        : 'no views'}
+                    </span>
                   </li>
                   <li className="flex items-center gap-1.5">
                     <FolderIcon className="size-3.5" />
