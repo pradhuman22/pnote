@@ -5,6 +5,8 @@ import RecentNoteSection from './_components/recent-note';
 import PopularNoteSection from './_components/popular-note';
 import TagListSection from './_components/tag-list';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const notes = await getNotesMetadata(4);
   const popularNotes = notes.sort((a, b) => b.views - a.views).slice(0, 4);
