@@ -46,11 +46,9 @@ const HeroSection = ({ data }: { data: NoteMetadata }) => {
             <li className="flex items-center gap-1.5">
               <EyeIcon className="size-3.5" />
               <span>
-                {data.views == 0
-                  ? data.views > 1
-                    ? `${data.views} views`
-                    : `${data.views} view`
-                  : 'no views'}
+                {data.views && data.views == 0
+                  ? 'no views'
+                  : `${data.views} ${data.views == 1 ? `view` : `views`}`}
               </span>
             </li>
             <li className="flex items-center gap-1.5">

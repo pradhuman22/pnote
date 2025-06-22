@@ -36,7 +36,11 @@ const NoteCard = ({ note }: { note: NoteMetadata }) => {
               </li>
               <li className="flex items-center space-x-1 border-r pr-1.5">
                 <EyeIcon className="size-3.5" />
-                <span>no views</span>
+                <span>
+                  {note.views && note.views == 0
+                    ? 'no views'
+                    : `${note.views} ${note.views == 1 ? `view` : `views`}`}
+                </span>
               </li>
               <li className="flex items-center space-x-1">
                 <FolderIcon className="size-3.5" />

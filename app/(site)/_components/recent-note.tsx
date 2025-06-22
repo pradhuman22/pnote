@@ -41,11 +41,9 @@ const RecentNoteSection = ({ data }: { data: NoteMetadata[] }) => {
                   <li className="flex items-center gap-1.5">
                     <EyeIcon className="size-3.5" />
                     <span>
-                      {note.views == 0
-                        ? note.views > 1
-                          ? `${note.views} views`
-                          : `${note.views} view`
-                        : 'no views'}
+                      {note.views && note.views == 0
+                        ? 'no views'
+                        : `${note.views} ${note.views == 1 ? `view` : `views`}`}
                     </span>
                   </li>
                   <li className="flex items-center gap-1.5">

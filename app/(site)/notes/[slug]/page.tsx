@@ -1,15 +1,50 @@
 import React from 'react';
 import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote-client/rsc';
-import { getNoteBySlug } from '@/lib/notes';
+import { getAllNotes, getNoteBySlug } from '@/lib/notes';
 import { formatDate } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeftIcon, CalendarIcon, ClockIcon, EyeIcon, FolderIcon, TagIcon } from 'lucide-react';
 import RelatedNotes from '../_components/related-notes';
 import Image from 'next/image';
+import { incrementNoteViews } from '../action';
+import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const note = await getNoteBySlug(slug);
+  if (!note) {
+    return {
+      title: 'Note not found',
+    };
+  }
+  return {
+    title: `${note.metadata.title} | Dev Note`,
+    description: note.metadata.excerpt,
+    openGraph: {
+      title: note.metadata.title,
+      description: note.metadata.excerpt,
+      type: 'article',
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const notes = await getAllNotes();
+  return notes.map(note => ({
+    slug: note.metadata.slug,
+  }));
+}
 
 const NoteDetail = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
+  await incrementNoteViews(slug);
   const note = await getNoteBySlug(slug);
   return (
     <div className="container mx-auto max-w-screen-xl">
@@ -48,11 +83,9 @@ const NoteDetail = async ({ params }: { params: Promise<{ slug: string }> }) => 
                 <li className="flex items-center space-x-1 border-r pr-1.5">
                   <EyeIcon className="size-3.5" />
                   <span>
-                    {note.metadata.views == 0
-                      ? note?.metadata.views < 2
-                        ? `${note?.metadata.views} view`
-                        : `${note?.metadata.views} views`
-                      : 'no views'}
+                    {note.metadata.views && note.metadata.views == 0
+                      ? 'no views'
+                      : `${note.metadata.views} ${note.metadata.views == 1 ? `view` : `views`}`}
                   </span>
                 </li>
                 <li className="flex items-center space-x-1">

@@ -45,11 +45,9 @@ const PopularNoteSection = ({ notes }: { notes: NoteMetadata[] }) => {
                     <li className="flex items-center gap-1">
                       <EyeIcon className="size-3" />
                       <span>
-                        {note.views == 0
-                          ? note.views < 2
-                            ? `${note.views} view`
-                            : `${note.views} views`
-                          : 'no views'}
+                        {note.views && note.views == 0
+                          ? 'no views'
+                          : `${note.views} ${note.views == 1 ? `view` : `views`}`}
                       </span>
                     </li>
                     <li className="flex items-center gap-1">

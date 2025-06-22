@@ -6,7 +6,8 @@ import PopularNoteSection from './_components/popular-note';
 import TagListSection from './_components/tag-list';
 
 export default async function Home() {
-  const notes = await getNotesMetadata();
+  const notes = await getNotesMetadata(4);
+  const popularNotes = notes.sort((a, b) => b.views - a.views).slice(0, 4);
   return (
     <div className="container mx-auto max-w-screen-xl px-4">
       <HeroSection data={notes[0]} />
@@ -16,7 +17,7 @@ export default async function Home() {
           <RecentNoteSection data={notes} />
         </div>
         <div className="w-full lg:max-w-md">
-          <PopularNoteSection notes={notes} />
+          <PopularNoteSection notes={popularNotes} />
           <TagListSection />
         </div>
       </div>

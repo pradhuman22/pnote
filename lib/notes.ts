@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { prisma } from '@/prisma/client';
 
 const rootDirectory = path.join(process.cwd(), 'content', 'notes');
 
@@ -14,6 +15,12 @@ export const getNotesMetadata = async (limit?: number): Promise<NoteMetadata[]> 
       /** get formatter */
       const markdownWithMetadata = fs.readFileSync(path.join(rootDirectory, file), 'utf-8');
       const { data } = matter(markdownWithMetadata);
+      const views = await prisma.views.findUnique({
+        where: {
+          slug: slug,
+        },
+      });
+      data.views = views?.count || 0;
       data.slug = slug;
       return data as NoteMetadata;
     }),
@@ -32,7 +39,13 @@ export const getNoteBySlug = async (slug: string): Promise<Note | null> => {
     const filePath = path.join(rootDirectory, `${slug}.mdx`);
     const fileContent = fs.readFileSync(filePath, { encoding: 'utf-8' });
     const { data, content } = matter(fileContent);
-    return { metadata: { ...data, slug }, content } as Note;
+    const noteViews = await prisma.views.findUnique({
+      where: {
+        slug: slug,
+      },
+    });
+    const views = noteViews?.count || 0;
+    return { metadata: { ...data, slug, views }, content } as Note;
   } catch (error) {
     console.log(error);
     return null;

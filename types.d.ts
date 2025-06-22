@@ -7,7 +7,7 @@ type NoteMetadata = {
   tags: string[];
   thumbnail: string;
   readingTime?: string;
-  views?: number;
+  views: number;
 };
 
 type Note = {
