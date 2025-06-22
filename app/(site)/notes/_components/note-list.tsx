@@ -37,7 +37,7 @@ const NoteList = ({ notes }: { notes: NoteMetadata[] }) => {
   }, [onScroll]);
   useEffect(() => {
     const category = searchParams.get('category');
-    const tags = searchParams.get('tags');
+    const tags = searchParams.get('tag');
     if (category) {
       setData(notes.filter(item => item.category.toLowerCase() == category.toLowerCase()));
     } else if (tags) {
