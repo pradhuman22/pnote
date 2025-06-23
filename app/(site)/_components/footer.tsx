@@ -9,7 +9,7 @@ import NewsLetterForm from './newsletter-form';
 const Footer = () => {
   return (
     <footer className="bg-muted/90 relative w-full border-t">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto max-w-screen-xl px-4 py-8">
         <div className="flex flex-col gap-10 lg:flex-row lg:gap-0">
           <div className="flex w-full max-w-md flex-col gap-4">
             <div className="space-y-1">
