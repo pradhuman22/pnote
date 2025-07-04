@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import NoteCard from './note-card';
 import { useSearchParams } from 'next/navigation';
 import { categories } from '@/constant';
-// import NoteSidebar from "./note-sidebar";
 
 const NoteList = ({ notes }: { notes: NoteMetadata[] }) => {
   const searchParams = useSearchParams();

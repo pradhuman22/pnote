@@ -57,7 +57,7 @@ const NoteDetail = async ({ params }: { params: Promise<{ slug: string }> }) => 
       {note ? (
         <>
           <article className="w-full px-4 py-12">
-            <div className="relative mb-6 aspect-video h-[280px] w-full">
+            <div className="relative mb-6 aspect-[3/2] h-[480px] w-full">
               <Image
                 src={note?.metadata.thumbnail}
                 alt={note?.metadata.title}
