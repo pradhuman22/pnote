@@ -32,9 +32,9 @@ const ContactSubmitted = ({ name }: ResetPasswordEmailProps) => {
             </Section>
             <Section className="mb-6">
               <Text className="text-muted-foreground text-base">
-                Your message has been successfully submitted. Our team will
-                review it and get back to you as soon as possible. Thank you for
-                reaching out to us.
+                Your message has been successfully submitted. I will review it
+                and get back to you as soon as possible. Thank you for reaching
+                out to us.
               </Text>
             </Section>
             <Section>
