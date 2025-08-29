@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import PopularNotesSection from "../_components/PopularNotesSection";
 import { getNotesMetadata } from "@/lib/notes";
 import TagListSection from "../_components/TagListSection";
@@ -11,7 +11,9 @@ const NotesListPage = async () => {
       <div className="grid lg:grid-cols-12 gap-10">
         {/* content */}
         <div className="lg:col-span-7 xl:col-span-8">
-          <NoteList notes={notes} />
+          <Suspense fallback={<>Loading...</>}>
+            <NoteList notes={notes} />
+          </Suspense>
         </div>
         {/* right sidebar */}
         <div className="lg:col-span-5 xl:col-span-4">
