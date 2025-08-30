@@ -13,8 +13,8 @@ import React from "react";
 const AboutMePage = () => {
   return (
     <div className="max-w-screen-xl container mx-auto px-4 md:px-16 py-8 space-y-4">
-      <div className="flex gap-6 items-start">
-        <div className="space-y-8 flex-2/3">
+      <div className="flex flex-wrap md:flex-nowrap gap-6 items-start">
+        <div className="space-y-8 w-full md:flex-2/3 order-2 md:order-1">
           <div className="space-y-4">
             <h2 className="text-2xl font-bold md:text-4xl">About Me</h2>
             <p className="text-base md:text-lg text-muted-foreground">
@@ -80,7 +80,7 @@ const AboutMePage = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1/3">
+        <div className="md:flex-1/3 w-full order-1 md:order-2">
           <Image
             src={"/profile1.jpg"}
             alt="profile image"
