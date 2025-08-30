@@ -82,12 +82,12 @@ const AboutMePage = () => {
         </div>
         <div className="flex-1/3">
           <Image
-            src={"/profile.jpg"}
+            src={"/profile1.jpg"}
             alt="profile image"
             height={600}
             width={300}
             priority
-            className="object-cover h-full w-full"
+            className="object-cover h-full w-full shadow border rounded-2xl"
             quality={90}
           />
         </div>
