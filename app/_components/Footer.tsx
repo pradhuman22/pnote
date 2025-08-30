@@ -42,8 +42,8 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex-1/3 flex flex-col lg:flex-row items-start gap-10">
-            <div className="flex flex-col gap-3 lg:w-40">
-              <h3 className="text-center text-xl font-bold lg:text-left">
+            <div className="flex flex-col gap-3 w-full lg:w-40">
+              <h3 className="text-center text-lg md:text-xl font-bold lg:text-left">
                 Quick Links
               </h3>
               <div className="grid gap-2 text-center lg:text-left">
@@ -54,8 +54,8 @@ const Footer = () => {
                 ))}
               </div>
             </div>
-            <div className="flex flex-col gap-3 lg:w-52">
-              <h3 className="text-center text-xl font-bold lg:text-left">
+            <div className="flex flex-col gap-3 w-full lg:w-52">
+              <h3 className="text-center text-lg md:text-xl font-bold lg:text-left">
                 Other Links
               </h3>
               <div className="grid gap-2 text-center lg:text-left">
