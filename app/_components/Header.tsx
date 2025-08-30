@@ -21,7 +21,7 @@ const Header = async () => {
           </div>
           <Navigation />
           <div className="flex items-center gap-5">
-            <div className="flex items-center gap-3.5">
+            <div className="flex items-center md:gap-2">
               <SearchBox data={notes} />
               <ModeToggle />
             </div>
